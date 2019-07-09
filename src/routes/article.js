@@ -26,7 +26,7 @@ articleRoutes.get('/:page', (req, res) => {
 });
 
 articleRoutes.post('/', (req, res) => {
-    articleControllerIns.addBook(req.body, (err, result) => {
+    articleControllerIns.addArticle(req.body, (err, result) => {
     if (err) {
       console.error(err);
       return res.status(500).end();
@@ -36,8 +36,8 @@ articleRoutes.post('/', (req, res) => {
   });
 });
 
-articleRoutes.post('/', (req, res) => {
-  articleControllerIns.addBook(req.body, (err, result) => {
+articleRoutes.put('/:id', (req, res) => {
+  articleControllerIns.editArticle(req.params.id, req.body, (err, result) => {
     if (err) {
       console.error(err);
       return res.status(500).end();
@@ -47,8 +47,8 @@ articleRoutes.post('/', (req, res) => {
   });
 });
 
-articleRoutes.delete('/:title', (req, res) => {
-  articleControllerIns.deleteArticle(req.params.title, (err, result) => {
+articleRoutes.delete('/:id', (req, res) => {
+  articleControllerIns.deleteArticle(req.params.id, (err, result) => {
     if (err) {
       console.error(err);
       return res.status(500).end();
