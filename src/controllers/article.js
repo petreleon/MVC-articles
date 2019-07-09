@@ -3,8 +3,9 @@ class ArticleController {
     this.articles = articleModel;
   }
 
-  getArticles(done) {
-    this.articles.find({}, done).limit(10).exec();
+  getArticles(page ,done) {
+    let limit = 10;
+    this.articles.find({}, done).limit(10).skip(limit * page)/*.exec()*/;
   }
 
   addArticle(article, done) {

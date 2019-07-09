@@ -6,7 +6,17 @@ var articleRoutes = new Router();
 var articleControllerIns = new articleController(articleModel);
 
 articleRoutes.get('/', (req, res) => {
-  articleControllerIns.getArticles((err, docs) => {
+  articleControllerIns.getArticles(0,(err, docs) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).end();
+    }
+    res.json(docs);
+  });
+});
+
+articleRoutes.get('/:page', (req, res) => {
+  articleControllerIns.getArticles(req.params.page-1, (err, docs) => {
     if (err) {
       console.error(err);
       return res.status(500).end();
