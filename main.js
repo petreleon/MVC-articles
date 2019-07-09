@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost:27017/testdb');
 mongoose.set('debug', true);
+mongoose.set('useFindAndModify', false);
 
 const routes = require('./src/routes/main');
 var app = express();
