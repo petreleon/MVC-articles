@@ -4,7 +4,7 @@ class ArticleController {
   }
 
   getArticles(done) {
-    this.articles.find({}, done);
+    this.articles.find({}, done).limit(10).exec(done);
   }
 
   addArticle(article, done) {
