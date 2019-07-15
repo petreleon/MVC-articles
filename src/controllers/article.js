@@ -5,7 +5,14 @@ class ArticleController {
 
   getArticles(page, done) {
     let limit = 10;
-    this.articles.find({}, done).limit(10).skip(limit * page);
+    this.articles.find({}, done).limit(limit).skip(limit * page);
+  }
+
+  getArticle(_id, done) {
+    //let ArticleIns = new this.articles(replace);
+    this.articles.findOne({
+      _id: _id
+    }, done);
   }
 
   addArticle(article, done) {

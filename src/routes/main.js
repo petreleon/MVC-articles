@@ -4,6 +4,6 @@ var mainRouter = new Router();
 let articleRoutes = require('./article');
 
 
-mainRouter.use(articleRoutes);
+mainRouter.use('/article', articleRoutes);
 
 module.exports = mainRouter;

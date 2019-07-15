@@ -5,8 +5,9 @@ var articleRoutes = new Router();
 
 var articleControllerIns = new articleController(articleModel);
 
-articleRoutes.get('/', (req, res) => {
-  articleControllerIns.getArticles(0,(err, docs) => {
+
+articleRoutes.get('/id/:id', (req, res) => {
+  articleControllerIns.getArticle(req.params.id, (err, docs) => {
     if (err) {
       console.error(err);
       return res.status(500).end();
@@ -15,8 +16,8 @@ articleRoutes.get('/', (req, res) => {
   });
 });
 
-articleRoutes.get('/:page', (req, res) => {
-  articleControllerIns.getArticles(req.params.page-1, (err, docs) => {
+articleRoutes.get('/page', (req, res) => {
+  articleControllerIns.getArticles(0, (err, docs) => {
     if (err) {
       console.error(err);
       return res.status(500).end();
@@ -24,9 +25,22 @@ articleRoutes.get('/:page', (req, res) => {
     res.json(docs);
   });
 });
+
+articleRoutes.get('/page/:page', (req, res) => {
+  articleControllerIns.getArticles(req.params.page - 1, (err, docs) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).end();
+    }
+    res.json(docs);
+  });
+});
+
+
+
 
 articleRoutes.post('/', (req, res) => {
-    articleControllerIns.addArticle(req.body, (err, result) => {
+  articleControllerIns.addArticle(req.body, (err, result) => {
     if (err) {
       console.error(err);
       return res.status(500).end();

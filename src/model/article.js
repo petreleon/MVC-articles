@@ -15,6 +15,6 @@ const articleSchema = new Schema({
   "PublicationYear": { type: String, required: false }
 });
 
-const Article = mongoose.model('Lines', articleSchema, 'lines');
+const Article = mongoose.model('MediaCollection', articleSchema, 'MediaCollection');
 
 module.exports = Article;
